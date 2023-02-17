@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+// import { faker } from "@faker-js/faker";
+import "semantic-ui-css/semantic.min.css";
+import { Comment } from "semantic-ui-react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//Membuat komponen komentar menggunakan props
+function App(props) {
+  const data = props.data;
+  //gunakan .map untuk perulangan
+  return data.map((d) => (
+    <Comment.Group>
+      <Comment>
+        <Comment.Avatar as="a" src={d.image} />
+        <Comment.Content>
+          <div className="d-flex flex">
+            <Comment.Author>{d.name}</Comment.Author>
+            <div className="ml-5">
+              <Comment.Metadata>
+                <div>{d.createdDate.toString()}</div>
+              </Comment.Metadata>
+            </div>
+          </div>
+          <Comment.Text>{d.post}</Comment.Text>
+        </Comment.Content>
+      </Comment>
+    </Comment.Group>
+  ));
 }
 
 export default App;
